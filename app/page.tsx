@@ -1,5 +1,11 @@
+import Hero from "./components/common/hero";
+
 function Home() {
-  return <>Onbexia</>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
 
 export default Home;
