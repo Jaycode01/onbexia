@@ -1,22 +1,32 @@
-// app/login/page.tsx
 "use client";
 
-import { useState } from "react";
-import { supabase } from "../lib/supabase";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { supabase } from "../lib/supabase"; // Adjust path to where your supabase client is
+import { useAuth } from "../lib/auth-context";
+import "./style.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
   const router = useRouter();
+  const { user } = useAuth();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      router.replace("/dashboard");
+    }
+  }, [user, router]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
+    setErrorMsg("");
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -24,96 +34,73 @@ export default function Login() {
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
-      if (data.user) {
+      if (data.session) {
+        // Successful login
+        // The AuthProvider listener will catch this state change automatically.
+        // We simply redirect.
+        router.refresh(); // Ensures server components re-run
         router.push("/dashboard");
       }
-    } catch {
-      setMessage("Invalid email or password");
-    } finally {
-      setLoading(false);
+    } catch (error: any) {
+      console.error("Login failed:", error);
+      setErrorMsg(error.message || "Invalid email or password");
+      setLoading(false); // Only stop loading on error, otherwise keep loading while redirecting
     }
   }
 
+  // If user is already logged in, don't show the form (prevents flash)
+  if (user) return null;
+
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px" }}>
-      <h1>Login</h1>
-
-      <form
-        onSubmit={handleLogin}
-        style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-      >
-        <div>
-          <label
-            htmlFor="email"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-            style={{ width: "100%", padding: "8px", fontSize: "16px" }}
-          />
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-header">
+          <h1>Welcome Back</h1>
+          <p>Enter your credentials to access your tours</p>
         </div>
 
-        <div>
-          <label
-            htmlFor="password"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-            style={{ width: "100%", padding: "8px", fontSize: "16px" }}
-          />
+        {errorMsg && <div className="error-message">{errorMsg}</div>}
+
+        <form onSubmit={handleLogin} className="login-form">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="name@company.com"
+              required
+              autoComplete="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              autoComplete="current-password"
+            />
+          </div>
+
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
+        </form>
+
+        <div className="login-footer">
+          Don't have an account? <Link href="/signup">Sign Up</Link>
         </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            padding: "10px",
-            backgroundColor: loading ? "#ccc" : "#0070f3",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: loading ? "not-allowed" : "pointer",
-            fontSize: "16px",
-          }}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-
-      {message && (
-        <p
-          style={{
-            marginTop: "15px",
-            padding: "10px",
-            backgroundColor: "#fee",
-            borderRadius: "5px",
-            color: "#c00",
-          }}
-        >
-          {message}
-        </p>
-      )}
-
-      <p style={{ marginTop: "20px", textAlign: "center" }}>
-        Dont have an account? <Link href="/signup">Sign Up</Link>
-      </p>
+      </div>
     </div>
   );
 }
