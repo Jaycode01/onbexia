@@ -1,0 +1,85 @@
+.about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 100px auto 0;
+  width: 85%;
+  gap: 5%;
+}
+
+.image-section {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.down-image,
+.up-image {
+  width: 300px;
+  height: auto;
+}
+
+.down-image {
+  position: relative;
+  bottom: -100px;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text-content h2 {
+  font-size: 30px;
+  font-family: "northbank";
+}
+
+.text-content p {
+  line-height: 25px;
+}
+
+@media screen and (max-width: 1024px) {
+  .about {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .down-image {
+    bottom: 0;
+    width: 50%;
+    height: 300px;
+    object-position: center;
+    object-fit: cover;
+  }
+
+  .image-section {
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .up-image {
+    width: 50%;
+    height: 300px;
+    object-position: top;
+    object-fit: cover;
+  }
+  .text-content {
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .image-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .down-image,
+  .up-image {
+    width: 100%;
+  }
+}
