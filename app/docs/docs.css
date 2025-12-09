@@ -1,0 +1,103 @@
+.doc-container {
+  display: flex;
+  min-height: 100vh;
+  margin: -20px;
+}
+
+.toc {
+  width: 300px;
+  background: #f8f9fa;
+  border-right: 1px solid #e1e4e8;
+  padding: 20px 1.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.toc h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #24292e;
+  font-family: "northbank";
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+}
+
+.toc ul li {
+  margin-bottom: 0.5rem;
+}
+
+.toc ul ul {
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.toc a {
+  color: #586069;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.toc a:hover {
+  color: #0366d6;
+}
+
+.content {
+  flex: 1;
+  padding: 3rem;
+  max-width: 900px;
+}
+
+.content h1 {
+  font-size: 30px;
+  margin-bottom: 1rem;
+  font-family: "recoleta";
+  text-transform: uppercase;
+}
+
+.content h2 {
+  font-size: 22px;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e1e4e8;
+  font-family: "recoleta";
+}
+
+.content h3 {
+  font-size: 19px;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-family: "recoleta";
+}
+
+.content pre {
+  background: #f6f8fa;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .toc {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .content {
+    padding: 2rem 1.5rem;
+  }
+}
