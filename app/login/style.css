@@ -1,0 +1,123 @@
+.login-container {
+  min-height: 100vh;
+  margin: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 40%;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.login-header h1 {
+  margin: 0 0 10px 0;
+  color: #1a1f2c;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: "northbank";
+}
+
+.login-header p {
+  color: #64748b;
+  margin: 0 0 30px 0;
+  font-size: 15px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input {
+  padding: 20px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #fd6504;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #cbd5e1;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #fd6504;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.submit-btn:hover {
+  background-color: #fd6304b4;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+.submit-btn:disabled {
+  background-color: #fd63043f;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  background-color: #fef2f2;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid #fecaca;
+  margin-bottom: 20px;
+}
+
+.login-footer {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.login-footer a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
