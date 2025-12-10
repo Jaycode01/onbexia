@@ -23,13 +23,17 @@ const Header = () => {
 
         <nav className="navigation">
           <li>
-            <a href="#">About</a>
+            <a href="/about">About</a>
           </li>
           <li>
-            <a href="#">Documentation</a>
+            <a href="/docs">Documentation</a>
           </li>
         </nav>
-        <button type="button" className="cta">
+        <button
+          onClick={() => router.push("/signup")}
+          type="button"
+          className="cta"
+        >
           <Image
             src="/icons/fierce.svg"
             alt="zap"
