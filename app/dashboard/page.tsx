@@ -36,6 +36,8 @@ const Dashboard: React.FC = () => {
   const [editingId, setEditingId] = useState<string | null>(null); // Track if we are editing
   const [savedTours, setSavedTours] = useState<SavedTour[]>([]); // List of tours
 
+  console.log(savedTours);
+
   // Initialize with 5 empty steps
   const initialSteps = [
     { id: 1, title: "", content: "", target: "" },
@@ -46,6 +48,8 @@ const Dashboard: React.FC = () => {
   ];
   const [steps, setSteps] = useState<Step[]>(initialSteps);
   const [generatedScript, setGeneratedScript] = useState<string | null>(null);
+
+  console.log(steps);
 
   // --- Effects ---
   useEffect(() => {
@@ -163,7 +167,7 @@ const Dashboard: React.FC = () => {
   };
 
   const handleShowScript = (tourId: string) => {
-    const code = `<script src="https://your-widget-url.vercel.app/widget.js" data-tour-id="${tourId}"></script>`;
+    const code = `<script src="https://hng-onbexia-widget.vercel.app/widget.js" data-tour-id="${tourId}"></script>`;
     // Simple prompt to allow copying
     prompt("Copy this code to your website:", code);
   };
