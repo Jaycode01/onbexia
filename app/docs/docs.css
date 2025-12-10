@@ -87,7 +87,7 @@
 }
 
 @media (max-width: 768px) {
-  .container {
+  .doc-container {
     flex-direction: column;
   }
 
