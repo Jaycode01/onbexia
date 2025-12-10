@@ -150,7 +150,8 @@ const Dashboard: React.FC = () => {
   };
 
   const handleShowScript = (tourId: string) => {
-    const code = `<script src="https://your-widget-url.vercel.app/widget.js" data-tour-id="${tourId}"></script>`;
+    const code = `<script src="https://hng-onbexia-widget.vercel.app/widget.js" data-tour-id="${tourId}"></script>`;
+    // Simple prompt to allow copying
     prompt("Copy this code to your website:", code);
   };
 
@@ -205,7 +206,7 @@ const Dashboard: React.FC = () => {
 
       if (stepError) throw stepError;
 
-      const scriptCode = `<script src="https://your-widget-url.vercel.app/widget.js" data-tour-id="${currentTourId}"></script>`;
+      const scriptCode = `<script src="https://hng-onbexia-widget.vercel.app/widget.js" data-tour-id="${currentTourId}"></script>`;
       setGeneratedScript(scriptCode);
 
       if (editingId) alert("Tour Updated Successfully!");
