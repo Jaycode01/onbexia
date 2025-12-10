@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import "./header.css";
 
 const Header = () => {
   const [menu, setmenu] = useState(false);
 
+  const router = useRouter();
   return (
     <>
       <header className="header">
@@ -20,13 +23,17 @@ const Header = () => {
 
         <nav className="navigation">
           <li>
-            <a href="#">About</a>
+            <a href="/about">About</a>
           </li>
           <li>
-            <a href="#">Documentation</a>
+            <a href="/docs">Documentation</a>
           </li>
         </nav>
-        <button type="button" className="cta">
+        <button
+          onClick={() => router.push("/signup")}
+          type="button"
+          className="cta"
+        >
           <Image
             src="/icons/fierce.svg"
             alt="zap"
@@ -60,13 +67,15 @@ const Header = () => {
       <div className={`mobile-navigation ${menu ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="#">About</a>
+            <Link href="/about">About</Link>
           </li>
           <li>
-            <a href="#">Documentation</a>
+            <Link href="/docs">Documentation</Link>
           </li>
         </ul>
-        <button type="button">Get Started</button>
+        <button onClick={() => router.push("/signup")} type="button">
+          Get Started
+        </button>
       </div>
     </>
   );

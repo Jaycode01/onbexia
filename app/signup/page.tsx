@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { supabase } from "../lib/supabase"; // Adjust path
+import { supabase } from "../lib/supabase";
 import { useAuth } from "../lib/auth-context";
 import "../login/style.css";
 
@@ -17,7 +17,6 @@ export default function SignUp() {
   const router = useRouter();
   const { user } = useAuth();
 
-  // Redirect if already logged in
   useEffect(() => {
     if (user) {
       router.replace("/dashboard");
@@ -35,7 +34,6 @@ export default function SignUp() {
         email,
         password,
         options: {
-          // If you want the user to be redirected back after email confirmation
           emailRedirectTo: `${window.location.origin}/dashboard`,
         },
       });
@@ -43,29 +41,29 @@ export default function SignUp() {
       if (error) throw error;
 
       if (data.user) {
-        // Check if the user needs to confirm their email
         if (data.user.identities && data.user.identities.length === 0) {
           setErrorMsg("This email is already in use. Try logging in.");
         } else if (!data.session) {
-          // Supabase default: Session is null if email confirmation is required
           setSuccessMsg(
             "Signup successful! Please check your email to confirm your account."
           );
         } else {
-          // Auto-login (if email confirmation is disabled in Supabase)
           router.refresh();
           router.push("/dashboard");
         }
       }
-    } catch (error: any) {
-      console.error("Signup error:", error);
-      setErrorMsg(error.message || "An error occurred during signup");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("signup error", error);
+        setErrorMsg(error.message || "An error occurred during signup");
+      } else {
+        console.error("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }
   }
 
-  // If user is already logged in, don't show the form
   if (user) return null;
 
   return (
@@ -76,7 +74,6 @@ export default function SignUp() {
           <p>Start building your tours today</p>
         </div>
 
-        {/* Success Message (Green) */}
         {successMsg && (
           <div
             className="error-message"
@@ -90,10 +87,8 @@ export default function SignUp() {
           </div>
         )}
 
-        {/* Error Message (Red) */}
         {errorMsg && <div className="error-message">{errorMsg}</div>}
 
-        {/* Only show form if we haven't succeeded yet (or allow retry) */}
         {!successMsg && (
           <form onSubmit={handleSignUp} className="login-form">
             <div className="form-group">

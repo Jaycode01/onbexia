@@ -16,7 +16,6 @@ export default function Login() {
   const router = useRouter();
   const { user } = useAuth();
 
-  // Redirect if already logged in
   useEffect(() => {
     if (user) {
       router.replace("/dashboard");
@@ -39,20 +38,19 @@ export default function Login() {
       }
 
       if (data.session) {
-        // Successful login
-        // The AuthProvider listener will catch this state change automatically.
-        // We simply redirect.
-        router.refresh(); // Ensures server components re-run
         router.push("/dashboard");
       }
-    } catch (error: any) {
-      console.error("Login failed:", error);
-      setErrorMsg(error.message || "Invalid email or password");
-      setLoading(false); // Only stop loading on error, otherwise keep loading while redirecting
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Login failed:", error);
+        setErrorMsg(error.message || "Invalid email or password");
+        setLoading(false);
+      } else {
+        console.error("A login error occur");
+      }
     }
   }
 
-  // If user is already logged in, don't show the form (prevents flash)
   if (user) return null;
 
   return (
@@ -98,7 +96,7 @@ export default function Login() {
         </form>
 
         <div className="login-footer">
-          Don't have an account? <Link href="/signup">Sign Up</Link>
+          {`Don't`} have an account? <Link href="/signup">Sign Up</Link>
         </div>
       </div>
     </div>

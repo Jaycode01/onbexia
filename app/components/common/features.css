@@ -1,0 +1,75 @@
+.features-wrapper {
+  padding: 20px;
+  margin-top: 100px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  transition: all 0.5s ease;
+}
+
+.features-heading {
+  font-size: 30px;
+  font-family: "recoleta";
+  text-transform: uppercase;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.feature {
+  background-color: #cbb894;
+  padding: 15px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: #1d1d1d;
+  min-height: 250px;
+}
+
+.feature .feature-icon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -50px;
+}
+
+.feat-heading {
+  font-family: "northbank";
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.feat-description {
+  text-align: center;
+}
+
+@media screen and (max-width: 765px) {
+  .features-heading {
+    font-size: 23px;
+    margin-top: 70px;
+  }
+
+  .features-wrapper {
+    grid-template-columns: 1fr;
+    gap: 70px;
+    margin-top: 50px;
+  }
+
+  .feature {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .features-wrapper {
+    padding: 10px;
+  }
+
+  .feature {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
