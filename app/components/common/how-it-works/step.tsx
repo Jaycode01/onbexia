@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRef } from "react";
+import { motion, type HTMLMotionProps, useInView } from "motion/react";
 import "./step.css";
 
-interface StepProps {
+interface StepProps extends HTMLMotionProps<"div"> {
   index: string;
   headline: string;
   description: string;
@@ -15,14 +17,23 @@ const Step = ({
   description,
   stepImage,
   reverse,
+  ...motionProps
 }: StepProps) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, margin: "-50px" });
+
   return (
-    <div className={`step-wrapper ${reverse ? "reverse" : ""}`}>
-      <div className="step-details">
+    <div ref={ref} className={`step-wrapper ${reverse ? "reverse" : ""}`}>
+      <motion.div
+        className="step-details"
+        {...motionProps}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <h2 className="index">{index}</h2>
         <h3 className="headline">{headline}</h3>
         <p className="description">{description}</p>
-      </div>
+      </motion.div>
       <div className="separator"></div>
       <div className="image-wrapper">
         <Image
