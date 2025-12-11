@@ -55,11 +55,11 @@ export default function AboutPage() {
               core.
             </p>
           </div>
-          <div className="story-image">
+          {/* <div className="story-image">
             <div className="shape-circle"></div>
             <div className="shape-square"></div>
             <Globe size={64} color="#94a3b8" style={{ zIndex: 2 }} />
-          </div>
+          </div> */}
         </div>
       </section>
 

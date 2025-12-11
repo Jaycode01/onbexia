@@ -11,7 +11,7 @@ export default function Header() {
       <nav className="navbar">
         <div className="container nav-content">
           <Link href="/" className="logo">
-            Onbexia<span style={{ color: "var(--primary)" }}>.</span>
+            Onbexia
           </Link>
 
           {/* Desktop Nav */}
