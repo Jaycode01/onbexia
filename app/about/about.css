@@ -1,0 +1,158 @@
+/* app/about/about.css */
+
+/* Reusing variables from landing.css context */
+:root {
+  --about-header-height: 300px;
+}
+
+.about-header {
+  background: radial-gradient(circle at bottom left, #eff6ff 0%, #ffffff 50%);
+  padding: 160px 0 80px;
+  text-align: center;
+}
+
+.about-header h1 {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.about-header p {
+  font-size: 20px;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- STORY SECTION --- */
+.story-section {
+  padding: 100px 0;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.story-content h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.story-content p {
+  margin-bottom: 20px;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.story-image {
+  background: #f1f5f9;
+  height: 400px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Abstract shapes for the image placeholder */
+.shape-circle {
+  width: 200px;
+  height: 200px;
+  background: #dbeafe;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  right: -50px;
+}
+
+.shape-square {
+  width: 150px;
+  height: 150px;
+  background: #eff6ff;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  transform: rotate(15deg);
+}
+
+/* --- VALUES SECTION --- */
+.values-section {
+  background: #f8fafc;
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.value-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.value-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-main);
+}
+
+/* --- TEAM SECTION --- */
+.team-section {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  width: 280px;
+  text-align: left;
+}
+
+.member-photo {
+  width: 100%;
+  height: 280px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-header h1 {
+    font-size: 36px;
+  }
+}

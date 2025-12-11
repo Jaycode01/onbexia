@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../lib/auth-context";
 import "../login/style.css";
+import Header from "@/components/Header";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -68,6 +69,7 @@ export default function SignUp() {
 
   return (
     <div className="login-container">
+      <Header />
       <div className="login-card">
         <div className="login-header">
           <h1>Create Account</h1>

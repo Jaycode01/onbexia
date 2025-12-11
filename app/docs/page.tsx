@@ -1,183 +1,260 @@
-import "./docs.css";
+"use client";
 
-function Documentation() {
+import { Code, Layers } from "lucide-react";
+import Header from "@/components/Header";
+
+import "./docs.css";
+import "../landing.css";
+
+export default function DocsPage() {
   return (
-    <div className="doc-container">
-      <nav className="toc">
-        <h2>Contents</h2>
-        <ul>
-          <li>
-            <a href="#introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#getting-started">Getting Started</a>
+    <>
+      <Header />
+      <div className="docs-layout">
+        <aside className="docs-sidebar">
+          <div className="sidebar-group">
+            <div className="sidebar-title">Getting Started</div>
+            <a href="#introduction" className="sidebar-link">
+              Introduction
+            </a>
+            <a href="#quick-start" className="sidebar-link">
+              Quick Start
+            </a>
+          </div>
+
+          <div className="sidebar-group">
+            <div className="sidebar-title">Building Tours</div>
+            <a href="#creating-tour" className="sidebar-link">
+              Creating a Tour
+            </a>
+            <a href="#defining-steps" className="sidebar-link">
+              Defining Steps
+            </a>
+            <a href="#targeting-elements" className="sidebar-link">
+              Targeting Elements
+            </a>
+          </div>
+
+          <div className="sidebar-group">
+            <div className="sidebar-title">Integration</div>
+            <a href="#installation" className="sidebar-link">
+              Installation
+            </a>
+            <a href="#troubleshooting" className="sidebar-link">
+              Troubleshooting
+            </a>
+          </div>
+        </aside>
+
+        {/* MAIN CONTENT */}
+        <main className="docs-content">
+          {/* SECTION: Introduction */}
+          <section id="introduction" className="doc-section">
+            <h1 className="doc-title">Introduction</h1>
+            <p>
+              Welcome to the Onbexia documentation. Onbexia is a
+              developer-friendly tool designed to help you create interactive
+              product tours for your web applications without writing complex
+              onboarding code.
+            </p>
+            <p>
+              By embedding a single lightweight script, you can guide users
+              through your application, highlighting key features and driving
+              adoption.
+            </p>
+          </section>
+
+          {/* SECTION: Quick Start */}
+          <section id="quick-start" className="doc-section">
+            <h2 className="doc-subtitle">Quick Start Guide</h2>
+            <p>
+              Follow these three steps to get your first tour live in under 5
+              minutes.
+            </p>
+
+            <ol style={{ marginLeft: "20px", marginTop: "15px" }}>
+              <li>
+                <strong>Sign Up:</strong> Create a free account on Onbexia.
+              </li>
+              <li>
+                <strong>Create Tour:</strong> Use the dashboard to define your
+                tour steps.
+              </li>
+              <li>
+                <strong>Embed:</strong> Copy the generated script into your
+                website's <span className="inline-code">&lt;head&gt;</span> tag.
+              </li>
+            </ol>
+          </section>
+
+          <hr
+            style={{
+              margin: "40px 0",
+              border: "none",
+              borderBottom: "1px solid #e2e8f0",
+            }}
+          />
+
+          {/* SECTION: Creating Tours */}
+          <section id="creating-tour" className="doc-section">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                color: "var(--primary)",
+              }}
+            >
+              <Layers size={24} />
+              <h2
+                className="doc-subtitle"
+                style={{ marginTop: 0, marginBottom: 0 }}
+              >
+                Creating a Tour
+              </h2>
+            </div>
+
+            <p style={{ marginTop: "20px" }}>
+              Navigate to your <strong>Dashboard</strong> and click the{" "}
+              <strong>"+ New Tour"</strong> button. You will be prompted to
+              enter a Tour Name (e.g., "Homepage Onboarding").
+            </p>
+
+            <div className="note">
+              <strong>Note:</strong> Currently, all tours must have a minimum of
+              5 steps to be saved. This ensures your users get a complete
+              walkthrough.
+            </div>
+          </section>
+
+          {/* SECTION: Defining Steps */}
+          <section id="defining-steps" className="doc-section">
+            <h2 className="doc-subtitle">Defining Steps</h2>
+            <p>Each step in a tour consists of three main components:</p>
             <ul>
               <li>
-                <a href="#installation">Installation</a>
-                <ul>
-                  <li>
-                    <a href="#create-account">Create Your Account</a>
-                  </li>
-                  <li>
-                    <a href="#build-tour">Build Your First Tour</a>
-                  </li>
-                  <li>
-                    <a href="#embed-widget">Embedding the Widget</a>
-                  </li>
-                </ul>
+                <strong>Title:</strong> A short header for the popup (e.g.,
+                "Welcome").
               </li>
               <li>
-                <a href="#dashboard-guide">Dashboard Guide</a>
-                <ul>
-                  <li>
-                    <a href="#dashboard-overview">Overview</a>
-                  </li>
-                  <li>
-                    <a href="#navigate-dashboard">Navigate Your Dashboard</a>
-                  </li>
-                  <li>
-                    <a href="#view-tours">View Your Tours</a>
-                  </li>
-                </ul>
+                <strong>Content:</strong> The body text explaining the feature.
+              </li>
+              <li>
+                <strong>Target ID:</strong> The HTML ID of the element you want
+                to highlight.
               </li>
             </ul>
-          </li>
-        </ul>
-      </nav>
+          </section>
 
-      <main className="content">
-        <h1 id="introduction">Introduction</h1>
-        <p>
-          Welcome to the Onbexia documentation! Whether {`you're`} a developer
-          integrating tours into your application or a product manager setting
-          up your first onboarding experience, this guide will walk you through
-          everything you need to know. Getting started with Onbexia is
-          incredibly simple—in fact, most teams have their first tour live in
-          under 5 minutes. This documentation covers the complete setup process,
-          from creating your account to embedding tours on your website,
-          customizing their appearance, and tracking user engagement.{` We've`}
-          designed Onbexia to be as intuitive as possible, but we know that
-          clear documentation makes all the difference. If you get stuck at any
-          point or have questions that {`aren't`} covered here, our support team
-          is always ready to help. {`Let's`} get you started on creating amazing
-          onboarding experiences for your users!
-        </p>
+          {/* SECTION: Targeting Elements */}
+          <section id="targeting-elements" className="doc-section">
+            <h2 className="doc-subtitle">How to Target Elements</h2>
+            <p>
+              Onbexia uses <strong>CSS IDs</strong> to anchor the tour popups.
+              You must ensure the elements on your website have unique IDs.
+            </p>
 
-        <h2 id="getting-started">Getting Started</h2>
-        <p>Follow these steps to get started.</p>
+            <p>Example HTML on your website:</p>
+            <div className="code-block">
+              &lt;button id="submit-btn"&gt;Submit Form&lt;/button&gt;
+            </div>
 
-        <h2 id="installation">Installation</h2>
-        <h3 id="create-account">Create Your Account</h3>
-        <p>
-          Getting started with Onbexia begins with creating your free account.
-          Head over to our homepage and click the {`"Get Started"`} button in
-          the header. {`You'll`} be asked to provide your email address and
-          create a secure password — {`that's`} it! No credit card required, no
-          lengthy forms, and no commitments. Once {`you've`} entered your
-          details, check them correct, and {`you'll`} be automatically
-          redirected to your dashboard. The entire process takes less than 60
-          seconds. Already have an account? Simply click {`"Log In"`} instead
-          and enter your credentials to access your dashboard. Once {`you're`}
-          logged in, {`you're`} ready to create your first tour!
-        </p>
+            <p>In the Onbexia Dashboard, you would enter:</p>
+            <ul>
+              <li>
+                Target Element ID:{" "}
+                <span className="inline-code">#submit-btn</span>
+              </li>
+            </ul>
 
-        <h3 id="build-tour">Build Your First Tour</h3>
-        <p>
-          Now that {`you're`} logged into your dashboard, {`it's`} time to
-          create your first onboarding tour. Click the {`"+ New Tour"`} button
-          to get started. {`You'll`} be taken to a simple form where you can
-          design your tour from start to finish. First, give your tour a
-          memorable name—something like {`"Welcome Tour"`} or{" "}
-          {`"Getting Started
-          Guide"`}{" "}
-          that helps you identify it later. Next, {`you'll`} add your tour
-          steps. Each tour requires a minimum of 5 steps to ensure a complete
-          onboarding experience. For each step, {`you'll`} fill in three key
-          pieces of information: the step title (a short, attention-grabbing
-          headline), the step description (the message you want to show users),
-          and the target element (a CSS selector that tells the widget where to
-          position the popup on your page). For example, if you want to
-          highlight your main hero section, you might use {`"#hero"`} as the
-          target element. If {`you're`} targeting a button with a class name,
-          {`you'd`} use something like {`".signup-button"`}. {`Don't`} worry if
-          {`you're`} not familiar with CSS selectors — {`we've`} included
-          helpful examples and tips right in the form. You can add as many steps
-          as you need beyond the minimum 5, and you can always come back later
-          to edit, reorder, or remove steps. Once {`you've`} filled in all your
-          step details, click {`"Save & Create Tour"`} at the bottom of the
-          page. Your tour will be saved instantly, and {`you'll`} see a section
-          at the bottom where you will copy the script for embedding.
-          Congratulations — {`you've`} just created your first Onbexia tour!
-        </p>
+            <div className="note">
+              If an element ID is not found on the page, the step will not
+              appear, or the widget may try to position itself in the center of
+              the screen.
+            </div>
+          </section>
 
-        <h3 id="embed-widget">Embedding Widget</h3>
-        <p>
-          Once your tour is created, {`it's`} time to add it to your website so
-          visitors can experience your onboarding flow. From your dashboard,
-          navigate to the tour you just created and click on it to view the
-          details page. To add the tour to your website, simply copy this entire
-          script tag. Next, open your
-          {`website's`} HTML file or navigate to your {`site's`} code editor.
-          {` You'll`} want to paste this script tag just before the closing{" "}
-          {`"</body>"`} tag at the bottom of your page. This ensures the widget
-          loads after your page content is ready, preventing any display issues.
-          If {`you're`} using a content management system like WordPress, you
-          can paste the code into your {`theme's`} footer section, a custom HTML
-          widget, or use a plugin that allows you to add scripts to your site.
-          For React, Next.js, or other JavaScript frameworks, you can add the
-          script tag to your main layout file or use the {`framework's`} script
-          loading methods. Once the code is in place, save your changes and
-          refresh your website. The tour should appear automatically for
-          first-time visitors. {`That's`} it — your onboarding tour is now live
-          and guiding your users!
-        </p>
+          <hr
+            style={{
+              margin: "40px 0",
+              border: "none",
+              borderBottom: "1px solid #e2e8f0",
+            }}
+          />
 
-        <h2 id="dashboard-guide">Dashboard Guide</h2>
+          {/* SECTION: Installation */}
+          <section id="installation" className="doc-section">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                color: "var(--primary)",
+              }}
+            >
+              <Code size={24} />
+              <h2
+                className="doc-subtitle"
+                style={{ marginTop: 0, marginBottom: 0 }}
+              >
+                Installation
+              </h2>
+            </div>
 
-        <h3 id="dashboard-overview">Overview</h3>
-        <p>
-          When you first log into Onbexia, {`you'll`} land on your main
-          dashboard. The interface is designed to be simple and intuitive, with
-          everything you need accessible from a single screen. On the left side,
-          {`you'll`} see the sidebar navigation menu, which contains links to
-          all major sections: Tours, and Analytics. The sidebar remains visible
-          as you navigate between pages, making it easy to jump between
-          different areas of the dashboard. The main content area on the right
-          is where {`you'll`} interact with your tours—viewing your tour list,
-          creating new tours, editing existing ones, or reviewing analytics. The
-          layout is clean and responsive, working seamlessly whether {`you're`}{" "}
-          on a desktop, tablet, or mobile device. Your current page is always
-          highlighted in the sidebar so you know where you are at a glance.
-        </p>
+            <p style={{ marginTop: "20px" }}>
+              Once you save your tour, the dashboard will generate a unique
+              script tag. Paste this code just before the closing{" "}
+              <span className="inline-code">&lt;/body&gt;</span> tag of your
+              website.
+            </p>
 
-        <h3 id="navigate-dashboard">Navigate Your Dashboard</h3>
-        <p>
-          The sidebar is your command center for everything in Onbexia. At the
-          top, {`you'll`} find the {`"Tours"`} link, which takes you to a page
-          displaying all your created tours in a list or grid format. Click
-          {`"Analytics"`} to view performance metrics and insights about how
-          your tours are performing. The sidebar stays visible across all pages,
-          so you can quickly switch between viewing your tours, checking
-          analytics, or adjusting settings without losing your place. Active
-          menu items are highlighted so you always know which section {`you're`}{" "}
-          currently viewing.
-        </p>
+            <h3>Standard HTML</h3>
+            <div className="code-block">
+              &lt;!-- Onbexia Widget --&gt; &lt;script
+              src="https://onbexia-widget.vercel.app/widget.js"
+              data-tour-id="YOUR_TOUR_UUID_HERE" &gt;&lt;/script&gt;
+            </div>
 
-        <h3 id="view-tours">View Your Tours</h3>
-        <p>
-          Click {`"Tours"`} in the sidebar to see a complete list of all your
-          created onboarding tours. Each tour is displayed as a card or row
-          showing key information: the tour name, date created, and action
-          buttons. From this page, you can quickly see all your tours at a
-          glance, click on any tour to view its details or edit it, or delete
-          tours you no longer need. At the top of the page, {`you'll`} find a
-          prominent {`"+ New Tour"`} button that takes you to the tour creation
-          form. If you have many tours, you can use the search bar to find
-          specific ones by name.
-        </p>
-      </main>
-    </div>
+            <h3>React / Next.js</h3>
+            <p>
+              For React applications, you can add the script in your{" "}
+              <span className="inline-code">index.html</span> or use a Script
+              component.
+            </p>
+            <div className="code-block">
+              import Script from 'next/script' &lt;Script
+              src="https://onbexia-widget.vercel.app/widget.js"
+              data-tour-id="YOUR_TOUR_UUID_HERE" strategy="lazyOnload" /&gt;
+            </div>
+          </section>
+
+          {/* SECTION: Troubleshooting */}
+          <section id="troubleshooting" className="doc-section">
+            <h2 className="doc-subtitle">Troubleshooting</h2>
+
+            <div style={{ marginBottom: "20px" }}>
+              <h4 style={{ fontWeight: 700, marginBottom: "5px" }}>
+                The widget isn't showing up.
+              </h4>
+              <p>
+                Ensure you have copied the correct Tour ID. Check your browser
+                console (F12) for any CORS errors or 404 errors.
+              </p>
+            </div>
+
+            <div style={{ marginBottom: "20px" }}>
+              <h4 style={{ fontWeight: 700, marginBottom: "5px" }}>
+                The popup is in the wrong place.
+              </h4>
+              <p>
+                Verify that the <strong>Target ID</strong> in your dashboard
+                matches the <span className="inline-code">id="..."</span> on
+                your HTML element exactly. Ids are case-sensitive.
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+    </>
   );
 }
-
-export default Documentation;

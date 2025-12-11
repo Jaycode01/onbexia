@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "../lib/supabase"; // Adjust path to where your supabase client is
 import { useAuth } from "../lib/auth-context";
 import "./style.css";
+import Header from "@/components/Header";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -55,6 +56,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <Header />
       <div className="login-card">
         <div className="login-header">
           <h1>Welcome Back</h1>

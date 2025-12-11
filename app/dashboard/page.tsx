@@ -7,6 +7,9 @@ import "./Dashboard.css";
 import { useAuth } from "../lib/auth-context";
 import Onbexia from "../../public/images/onbexia-logo.png";
 import ProtectedRoute from "../components/common/protected-route";
+import { useRouter } from "next/navigation";
+import { Lock } from "lucide-react";
+import Link from "next/link";
 
 interface Step {
   id: number;
@@ -30,6 +33,7 @@ const Dashboard: React.FC = () => {
   const [view, setView] = useState<"create" | "list" | "analytics">("create");
   const [loading, setLoading] = useState<boolean>(false);
   const { user } = useAuth();
+  const router = useRouter();
 
   const [tourName, setTourName] = useState<string>("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -223,10 +227,35 @@ const Dashboard: React.FC = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    window.location.reload();
+    window.location.href = "/";
   };
 
-  if (!user) return <div className="login-prompt">Please Log In</div>;
+  if (!loading && !user) {
+    return (
+      <div className="login-screen-container">
+        <div className="login-prompt-card">
+          <div className="icon-wrapper">
+            <Lock size={40} color="#2563eb" />
+          </div>
+          <h2>Access Restricted</h2>
+          <p>
+            You need to be logged in to manage your tours and view analytics.
+          </p>
+
+          <div className="login-actions">
+            <Link href="/login" className="login-btn-primary">
+              Log In to Dashboard
+            </Link>
+            <Link href="/" className="login-btn-secondary">
+              Back to Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) return null;
 
   return (
     <ProtectedRoute>
